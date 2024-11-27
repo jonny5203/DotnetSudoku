@@ -5,6 +5,8 @@ namespace DotnetSudoku;
 
 public partial class MainPage : ContentPage
 {
+    
+    
     public MainPage()
     {
         InitializeComponent();
@@ -33,7 +35,7 @@ public partial class MainPage : ContentPage
             }
         };
 
-// Create 3x3 inner grids
+        // Create 3x3 inner grids
         for (int row = 0; row < 3; row++)
         {
             for (int col = 0; col < 3; col++)
