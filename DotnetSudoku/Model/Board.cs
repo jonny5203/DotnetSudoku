@@ -17,6 +17,19 @@ public class Board
     
     public Group GetGroupByPosition(VerticalGroups verticalGroups, HorizontalGroups horizontalGroups)
     {
-        
+        return _board[(int)verticalGroups, (int)horizontalGroups];
+    }
+
+    public bool legalPlacement(int innerArrayVertical, int innerArrayHorizontal, VerticalGroups verticalGroups, HorizontalGroups horizontalGroups)
+    {
+        Group[] relatedGroups = _board.GetLength((int) verticalGroups);
+
+        for (int i = 0; i < 9; i++)
+        {
+            if ()
+            {
+
+            }
+        }
     }
 }
