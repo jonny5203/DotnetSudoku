@@ -18,4 +18,13 @@ public class Cell
         get { return _value; } 
         set { _value = value; } 
     }
+
+    public bool ValidValue(int value)
+    {
+        if (value == _value)
+        {
+            return false;
+        }
+        return true;
+    }
 }

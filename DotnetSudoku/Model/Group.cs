@@ -4,21 +4,36 @@ namespace DotnetSudoku.Model;
 
 public class Group
 {
-    private Cell[,] _group;
-    private VerticalGroups _verticalGroup;
-    private HorizontalGroups _horizontalGroup;
+    private readonly Cell[,] _cells;
+    private int _verticalGroup;
+    private int _horizontalGroup;
 
-    public Group(Cell[,] group, VerticalGroups verticalGroup, HorizontalGroups horizontalGroups)
+    public Group(int verticalGroup, int horizontalGroups)
     {
-        _group = group;
+        _cells = new Cell[3, 3];
         _verticalGroup = verticalGroup;
         _horizontalGroup = horizontalGroups;
     }
 
+    public void AddCellToGroup(Cell cell, int cellPositionX, int cellPositionY)
+    {
+        _cells[cellPositionX, cellPositionY] = cell;
+    }
+
     public void ChangeCell(int value, int cellPositionX, int cellPositionY)
     {
-        _group[cellPositionX, cellPositionY].Value = value;
+        _cells[cellPositionX, cellPositionY].Value = value;
     }
-    
 
+    public bool CheckCellsValues(int value, int cellPositionX, int cellPositionY)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (_cells[i, cellPositionY].ValidValue(value) && _cells[cellPositionY, i].ValidValue(value))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
