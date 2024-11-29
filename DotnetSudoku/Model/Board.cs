@@ -1,5 +1,4 @@
-﻿using CoreText;
-using DotnetSudoku.GameLogic;
+﻿using DotnetSudoku.GameLogic;
 
 namespace DotnetSudoku.Model;
 
@@ -31,7 +30,7 @@ public class Board
                             // Generate a random integer between 1 and 9 (inclusive)
                             int randomNumber = random.Next(1, 10);
 
-                            LegalPlacement(randomNumber, );
+                            //LegalPlacement(randomNumber, );
                         }
                     }
                 }
