@@ -15,25 +15,36 @@ public class Board
         {
             for (int j = 0; j < _board.GetLength(1); j++)
             {
-                _board[i, j] = new Group(i, j);
+                Group groupToBeAdded = new Group(i, j);
                 
                 //Create cells and put it into the groups
                 for (int celli = 0; celli < _board.GetLength(0); celli++)
                 {
                     for (int cellj = 0; cellj < _board.GetLength(1); cellj++)
                     {
-                        var randomConditionMet = true;
+                        var randomConditionMet = false;
                         Random random = new Random();
-                        //int lastRandomNumber = 0;
-                        while (randomConditionMet)
+                        int lastRandomNumber = 0;
+                        while (randomConditionMet == false)
                         {
                             // Generate a random integer between 1 and 9 (inclusive)
                             int randomNumber = random.Next(1, 10);
+                            if (randomNumber == lastRandomNumber) continue;
 
-                            //LegalPlacement(randomNumber, );
+
+                            if(LegalPlacement(randomNumber, celli, cellj, i, j))
+                            {
+                                randomConditionMet = true;
+                            }
+
+                            lastRandomNumber = randomNumber;
                         }
+
+                        groupToBeAdded.AddCellToGroup(new Cell(lastRandomNumber, celli, cellj), celli, cellj);
                     }
                 }
+
+                _board[i, j] = groupToBeAdded;
             }
         }
     }

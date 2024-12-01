@@ -1,15 +1,20 @@
-﻿using Microsoft.Maui.Layouts;
+﻿using DotnetSudoku.Model;
+using Microsoft.Maui.Layouts;
 using StackLayout = Microsoft.Maui.Controls.Compatibility.StackLayout;
 
 namespace DotnetSudoku;
 
 public partial class MainPage : ContentPage
 {
-    
+    internal Board _board;
     
     public MainPage()
     {
         InitializeComponent();
+
+        _board = new Board();
+
+        Console.WriteLine(_board.GetGroupByPosition(0, 0).GetCellStringValue(0,0));
 
         Grid mainGrid = new Grid
         {
@@ -70,6 +75,8 @@ public partial class MainPage : ContentPage
                     Content = innerGrid
                 };
 
+                //Group currentGroup = _board.GetGroupByPosition(row, col);
+
                 // Add buttons to the inner grid
                 for (int innerRow = 0; innerRow < 3; innerRow++)
                 {
@@ -77,7 +84,7 @@ public partial class MainPage : ContentPage
                     {
                         Button button = new Button
                         {
-                            Text = ((row * 3 + innerRow) * 9 + col * 3 + innerCol + 1).ToString(),
+                            Text = "1",//currentGroup.GetCellStringValue(innerRow, innerCol),
                             TextColor = Colors.White,
                             BackgroundColor = Colors.Transparent,
                             BorderColor = Colors.Black,
@@ -87,6 +94,7 @@ public partial class MainPage : ContentPage
                             FontSize = 18 // Adjust font size as needed
                         };
                         innerGrid.Add(button, innerCol, innerRow);
+
                     }
                 }
                 

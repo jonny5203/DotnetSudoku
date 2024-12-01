@@ -20,7 +20,17 @@ public class Group
         _cells[cellPositionX, cellPositionY] = cell;
     }
 
-    public void ChangeCell(int value, int cellPositionX, int cellPositionY)
+    public int GetCellValue(int cellPositionX, int cellPositionY)
+    {
+        return _cells[cellPositionX, cellPositionY].Value;
+    }
+
+    public string GetCellStringValue(int cellPositionX, int cellPositionY)
+    {
+        return _cells[cellPositionX, cellPositionY].Value.ToString();
+    }
+
+    public void ChangeCellValue(int value, int cellPositionX, int cellPositionY)
     {
         _cells[cellPositionX, cellPositionY].Value = value;
     }
@@ -29,9 +39,22 @@ public class Group
     {
         for (int i = 0; i < 3; i++)
         {
-            if (_cells[i, cellPositionY].ValidValue(value) && _cells[cellPositionY, i].ValidValue(value))
+            if (_cells[i, cellPositionY] != null)
+            {            
+                if (_cells[i, cellPositionY].ValidValue(value))
+                {
+                    return false;
+                }
+
+            }
+
+            if (_cells[cellPositionY, i] != null)
             {
-                return false;
+                if (_cells[cellPositionY, i].ValidValue(value))
+                {
+                    return false;
+                }
+
             }
         }
         return true;

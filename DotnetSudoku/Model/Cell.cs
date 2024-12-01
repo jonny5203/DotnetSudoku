@@ -6,7 +6,7 @@ public class Cell
     private readonly int _column;
     private int _value;
     
-    public Cell(int row, int column, int value)
+    public Cell(int value, int row, int column)
     {
         _row = row;
         _column = column;
